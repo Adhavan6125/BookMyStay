@@ -22,6 +22,9 @@ public class UseCase6RoomAllocation {
         RoomInventory inventory = new RoomInventory();
 
         // Queue (UC5)
+
+
+
         BookingRequestQueue queue = new BookingRequestQueue();
 
         // Add booking requests (page 6) :contentReference[oaicite:1]{index=1}
