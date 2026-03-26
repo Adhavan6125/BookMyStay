@@ -1,20 +1,22 @@
 /**
  *
- * MAIN CLASS UseCase4RoomSearch
+ * MAIN CLASS UseCase3InventorySetup
  *
- * Use Case 4: Room Search & Availability Check
+ * Use Case 3: Centralized Room Inventory Management
  *
  * Description:
- * This class demonstrates how guests
- * can view available rooms without
- * modifying inventory data.
+ * This class demonstrates how room availability
+ * is managed using a centralized inventory.
  *
- * The system enforces read-only access
- * by design and usage discipline.
+ * Room objects are used to retrieve pricing
+ * and room characteristics.
  *
- * @author RamyaAnandan
- * @version 4.0
+ * No booking or search logic is introduced here.
+ *
+ * @author Adhavan6125
+ * @version 3.1
  */
+
 
 public class UseCase4RoomSearch {
 
