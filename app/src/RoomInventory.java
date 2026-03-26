@@ -1,50 +1,71 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
- * MAIN CLASS UseCase4RoomSearch
+ * CLASS RoomInventory
  *
- * Use Case 4: Room Search & Availability Check
+ * Use Case 3: Centralized Room Inventory Management
  *
  * Description:
- * This class demonstrates how guests
- * can view available rooms without
- * modifying inventory data.
+ * This class acts as the single source of truth
+ * for room availability in the hotel.
  *
- * The system enforces read-only access
- * by design and usage discipline.
+ * Room pricing and characteristics are obtained
+ * from Room objects, not duplicated here.
+ *
+ * This avoids multiple sources of truth and
+ * keeps responsibilities clearly separated.
  *
  * @author RamyaAnandan
- * @version 4.0
+ * @version 3.1
  */
 
-public class UseCase4RoomSearch {
+public class RoomInventory {
 
     /**
-     * Application entry point.
-     *
-     * @param args Command-line arguments
+     * Stores available room count for each room type.
+     * Key -> Room type name
+     * Value -> Available room count
      */
+    private Map<String, Integer> roomAvailability;
 
-    public static void main(String[] args) {
+    /**
+     * Constructor initializes the inventory
+     * with default availability values.
+     */
+    public RoomInventory() {
+        roomAvailability = new HashMap<>();
+        initializeInventory();
+    }
 
-        System.out.println("Room Search\n");
+    /**
+     * Initializes room availability data.
+     * This method centralizes inventory setup
+     * instead of using scattered variables.
+     */
+    private void initializeInventory() {
+        roomAvailability.put("Single Room", 5);
+        roomAvailability.put("Double Room", 3);
+        roomAvailability.put("Suite Room", 2);
+    }
 
-        // Create room objects
-        Room singleRoom = new SingleRoom();
-        Room doubleRoom = new DoubleRoom();
-        Room suiteRoom = new SuiteRoom();
+    /**
+     * Returns the current availability map.
+     *
+     * @return map of room type to available count
+     */
+    public Map<String, Integer> getRoomAvailability() {
+        return roomAvailability;
+    }
 
-        // Create inventory
-        RoomInventory inventory = new RoomInventory();
-
-        // Create search service
-        RoomSearchService searchService = new RoomSearchService();
-
-        // Perform room search
-        searchService.searchAvailableRooms(
-                inventory,
-                singleRoom,
-                doubleRoom,
-                suiteRoom
-        );
+    /**
+     * Updates availability for a specific room type.
+     *
+     * @param roomType the room type to update
+     * @param count new availability count
+     */
+    public void updateAvailability(String roomType, int count) {
+        roomAvailability.put(roomType, count);
     }
 }
